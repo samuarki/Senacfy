@@ -1,0 +1,98 @@
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+
+h1 {
+    color: #ff8c00; 
+    text-align: center;
+}
+
+
+.btn-primary {
+    background-color: #ff8c00;
+    border-color: #ff8c00;
+}
+
+.btn-primary:hover {
+    background-color: #f77c00;
+    border-color: #f77c00;
+}
+
+.btn-secondary {
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+}
+
+.btn-secondary:hover {
+    background-color: #000;
+    border-color: #000;
+}
+
+
+input {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: #ff8c00;
+}
+
+
+#error-message {
+    color: #ff4c4c;
+    text-align: center;
+}
+
+
+a.btn-secondary {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+button:hover, a.btn-secondary:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.navbar, footer {
+    background-color: #333333;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}

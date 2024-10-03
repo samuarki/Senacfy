@@ -4,18 +4,24 @@
         <meta charset="UTF-8">
         <title>Administração - Senacfy</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <style>
-            .scrollable-box {
-                height: 500px;
-                overflow-y: scroll;
-                padding-right: 15px;
-            }
-        </style>
+        <link rel="stylesheet" href="admin.css">
     </head>
     <body>
-        <div class="container">
-            <h1 class="mt-5">Administração - Músicas</h1>
-            <div class="scrollable-box mt-3">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/music.png" alt="Ícone" style="width: 30px; margin-right: 5px;">
+                Senacfy
+            </a>
+            <div class="ml-auto">
+                <a class="btn btn-outline-light" href="/">Voltar para Início</a>
+            </div>
+        </nav>
+
+
+        <div class="container mt-5">
+            <h1 class="text-center">Administração - Músicas</h1>
+            <div class="scrollable-box mt-4">
                 <div class="row">
                     <div class="col-12" th:each="musica : ${musicas}">
                         <div class="card mb-4 shadow-sm">
@@ -41,7 +47,11 @@
                     </div>
                 </div>
             </div>
-            <a href="/" class="btn btn-secondary mt-3">Voltar para o Início</a>
         </div>
+
+
+        <footer class="bg-dark text-white text-center py-3 mt-4">
+            <p>© 2024 Senacfy. Todos os direitos reservados.</p>
+        </footer>
     </body>
 </html>

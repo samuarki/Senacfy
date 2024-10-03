@@ -8,18 +8,20 @@ public class Musica {
     private String genero;
     private String estilo;
     private int anoLancamento;
+    private String link;
     private boolean aprovado;
 
     public Musica() {
     }
 
-    public Musica(int id, String nome, String artista, String genero, String estilo, int anoLancamento, boolean aprovado) {
+    public Musica(int id, String nome, String artista, String genero, String estilo, int anoLancamento, String link, boolean aprovado) {
         this.id = id;
         this.nome = nome;
         this.artista = artista;
         this.genero = genero;
         this.estilo = estilo;
         this.anoLancamento = anoLancamento;
+        this.link = link;
         this.aprovado = aprovado;
     }
 
@@ -71,6 +73,14 @@ public class Musica {
         this.anoLancamento = anoLancamento;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     public boolean isAprovado() {
         return aprovado;
     }
@@ -79,6 +89,15 @@ public class Musica {
         this.aprovado = aprovado;
     }
 
-    
+    public String getEmbedLink() {
+        if (link == null || link.isEmpty()) {
+            return null;
+        }
+        String videoId = link.substring(link.lastIndexOf('/') + 1);
+        if (videoId.contains("?")) {
+            videoId = videoId.substring(0, videoId.indexOf('?'));
+        }
+        return "https://www.youtube.com/embed/" + videoId;
+    }
 
 }
