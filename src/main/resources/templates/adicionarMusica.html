@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Adicionar Música</title>
+        <title>Senacfy - Sugerir Musica</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     </head>
     <body>
         <div class="container">
-            <h1 class="mt-5">Adicionar Música</h1>
+            <h1 class="mt-5">Sugerir Musica</h1>
             <form action="/adicionar-musica" method="post" class="mt-3">
                 <div class="form-group">
                     <label for="nome">Nome da Música</label>
@@ -29,8 +29,8 @@
                     <label for="anoLancamento">Ano de Lançamento</label>
                     <input type="number" class="form-control" id="anoLancamento" name="anoLancamento" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Salvar Música</button>
-                <a href="/musicas" class="btn btn-secondary">Voltar para Músicas</a> <!-- Botão de Voltar -->
+                <button type="submit" class="btn btn-primary">Enviar</button>
+                <a href="/musicas" class="btn btn-secondary">Voltar para Músicas</a>
             </form>
         </div>
     </body>

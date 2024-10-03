@@ -88,21 +88,26 @@ public class SenacfyController {
     @GetMapping("/administracao")
     public String administracao(Model model) {
         model.addAttribute("musicas", listaMusicas);
-        return "administracao"; // retorna a nova página de administração
+        return "administracao";
     }
 
     @PostMapping("/aprovar/{id}")
     public String aprovarMusica(@PathVariable int id) {
         Musica musica = listaMusicas.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
         if (musica != null) {
-            musica.setAprovado(true); // aprova a música
+            musica.setAprovado(true);
         }
-        return "redirect:/administracao"; // redireciona para a página de administração
+        return "redirect:/administracao";
     }
 
     @PostMapping("/excluir/{id}")
     public String excluirMusica(@PathVariable int id) {
-        listaMusicas.removeIf(m -> m.getId() == id); // remove a música da lista
-        return "redirect:/administracao"; // redireciona para a página de administração
+        listaMusicas.removeIf(m -> m.getId() == id);
+        return "redirect:/administracao";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }

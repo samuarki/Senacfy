@@ -27,14 +27,12 @@
                                 <p class="card-text"><strong>Ano de Lançamento:</strong> <span th:text="${musica.anoLancamento}"></span></p>
                                 <p class="card-text"><strong>Aprovada:</strong> <span th:text="${musica.aprovado ? 'Sim' : 'Não'}"></span></p>
 
-                                <!-- Exibir botão de Aprovar apenas se a música não estiver aprovada -->
                                 <div th:if="${!musica.aprovado}">
                                     <form th:action="@{'/aprovar/' + ${musica.id}}" method="post" style="display:inline;">
                                         <button type="submit" class="btn btn-success">Aprovar</button>
                                     </form>
                                 </div>
 
-                                <!-- Formulário para Excluir -->
                                 <form th:action="@{'/excluir/' + ${musica.id}}" method="post" style="display:inline;">
                                     <button type="submit" class="btn btn-danger">Excluir</button>
                                 </form>
