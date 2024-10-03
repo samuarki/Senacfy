@@ -6,24 +6,24 @@
 Senacfy
 
 # Status do Projeto: 
-Em desenvolvimento
+Em desenvolvimento, segunda etapa concluida
 
 # Tecnologias Aplicadas:
 Java 
 HTML5 
 CSS3 
 JavaScript 
-Banco de Dados (MySQL) 
+Banco de Dados (MySQL)
 
 NetBeans (IDE para desenvolvimento)
+MySql Workbench
 Visual Studio Code
 
 # Time de Desenvolvedores:
 Samuel Andrade Rodrigues
 
 # Objetivo do Software:
- O objetivo do site é criar um espaço onde os usuários possam explorar o contexto e as histórias por trás das músicas, além de ouvir as faixas e contribuir com novos conteúdos, criando uma comunidade de amantes de música e cultura.
-
+O objetivo do site é criar um espaço onde os usuários possam explorar músicas novas, além de ouvir as faixas e contribuir com novos conteúdos, criando uma comunidade de amantes de música e cultura.
 
 # Funcionalidades do Sistema:
 
@@ -51,3 +51,16 @@ O site deve permitir que o usuário veja os textos relacionados e ouça músicas
 O site deve permitir usuários cadastrar músicas novas e visualizá-las na página
 Deve haver uma funcionalidade de moderação de conteúdo para aprovar ou rejeitar músicas enviadas pelos usuários.
 O site deve ser responsivo e acessível a partir de dispositivos móveis e desktops.
+
+
+# INFO:
+
+Login dos administradores:
+user: admin
+psswrd: 1234
+
+Os links cadastrados devem ser links de compartilhamento, para que possam ser convertidos para o player no site
+
+Deftones - Hexagram (Official Music Video) [HD Remaster]
+link incorreto - https://www.youtube.com/watch?v=yP4dFHSd-iw
+link correto - https://youtu.be/yP4dFHSd-iw?si=9lThruuICYxqHIEU
