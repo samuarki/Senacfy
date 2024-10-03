@@ -94,8 +94,8 @@ public class Musica {
             return null;
         }
         String videoId = link.substring(link.lastIndexOf('/') + 1);
-        if (videoId.contains("?")) {
-            videoId = videoId.substring(0, videoId.indexOf('?'));
+        if (videoId.contains("youtu.be/")) {
+            videoId = videoId.substring(0, videoId.indexOf('/'));
         }
         return "https://www.youtube.com/embed/" + videoId;
     }

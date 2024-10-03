@@ -20,8 +20,8 @@ public class SenacfyController {
         listaMusicas.add(new Musica(nextId++, "Change (In the House of Flies)", "Deftones", "Metal", "Alternativa", 2000, "https://youtu.be/WPpDyIJdasg?si=a8AVsqQ_0O2tySCZ", true));
         listaMusicas.add(new Musica(nextId++, "My Own Summer (Shove It)", "Deftones", "Metal", "Alternativa", 1997, "https://youtu.be/XOzs1FehYOA?si=6dLbcQp4daG3YSmz", true));
         listaMusicas.add(new Musica(nextId++, "Be Quiet and Drive (Far Away)", "Deftones", "Metal", "Alternativa", 1997, "https://youtu.be/KvknOXGPzCQ?si=mEgvb5cT7mGNVCGv", true));
-        listaMusicas.add(new Musica(nextId++, "Diamond Eyes", "Deftones", "Metal", "Alternativa", 2010, "https://www.youtube.com/watch?v=gRlHBTYKyVg", true));
-        listaMusicas.add(new Musica(nextId++, "Sextape", "Deftones", "Metal", "Alternativa", 2010, "https://www.youtube.com/watch?v=f0pdwd0miqs", true));
+        listaMusicas.add(new Musica(nextId++, "Diamond Eyes", "Deftones", "Metal", "Alternativa", 2010, "https://youtu.be/gRlHBTYKyVg?si=3xb79zZnDbA8b9zQ", true));
+        listaMusicas.add(new Musica(nextId++, "Sextape", "Deftones", "Metal", "Alternativa", 2010, "https://youtu.be/f0pdwd0miqs?si=_8_ZaLOQZ7LypLlH", true));
         listaMusicas.add(new Musica(nextId++, "You’ve Seen the Butcher", "Deftones", "Metal", "Alternativa", 2010, "https://youtu.be/woAcXSMyCEw?si=HIFM_wb9JOzwkNE8", true));
         listaMusicas.add(new Musica(nextId++, "Root", "Deftones", "Metal", "Alternativa", 1995, "https://youtu.be/344xGZeoGhI?si=N7oJWmwmYLlNipzo", true));
         listaMusicas.add(new Musica(nextId++, "Minerva", "Deftones", "Metal", "Alternativa", 2003, "https://youtu.be/mLa0-sQg1YM?si=AkvGrGVXBAnpvg02", false));
