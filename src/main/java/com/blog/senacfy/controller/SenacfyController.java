@@ -14,14 +14,13 @@ public class SenacfyController {
 
     private List<Musica> listaMusicas = new ArrayList<>();
     private List<Avaliacao> listaAvaliacoes = new ArrayList<>();
+    private int nextId = 1;
 
     public SenacfyController() {
-        // Alimentar a lista com algumas músicas
-        listaMusicas.add(new Musica(1, "Song 1", "Artist 1", "Rock", "Indie", 2010));
-        listaMusicas.add(new Musica(2, "Song 2", "Artist 2", "Pop", "Dance", 2015));
-        listaMusicas.add(new Musica(3, "Song 3", "Artist 3", "Jazz", "Smooth", 2005));
-
-        // Simulação de avaliações para teste
+        listaMusicas.add(new Musica(nextId++, "Song 1", "Artist 1", "Rock", "Indie", 2010, true));
+        listaMusicas.add(new Musica(nextId++, "Song 2", "Artist 2", "Pop", "Dance", 2015, true));
+        listaMusicas.add(new Musica(nextId++, "Song 3", "Artist 3", "Jazz", "Smooth", 2005, false));
+       
         listaAvaliacoes.add(new Avaliacao(1, 8, "Ótima música!", 1));
         listaAvaliacoes.add(new Avaliacao(2, 7, "Gostei bastante.", 2));
     }
@@ -41,7 +40,7 @@ public class SenacfyController {
     public String detalhesMusica(Model model, @PathVariable int id) {
         Musica musica = listaMusicas.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
         if (musica == null) {
-            return "redirect:/musicas"; 
+            return "redirect:/musicas";
         }
 
         List<Avaliacao> avaliacoesFiltradas = new ArrayList<>();
@@ -67,5 +66,22 @@ public class SenacfyController {
         listaAvaliacoes.add(novaAvaliacao);
 
         return "redirect:/musica/" + id;
+    }
+
+    @GetMapping("/adicionar-musica")
+    public String adicionarMusicaForm() {
+        return "adicionarMusica"; 
+    }
+
+    @PostMapping("/adicionar-musica")
+    public String adicionarMusica(@RequestParam("nome") String nome,
+            @RequestParam("artista") String artista,
+            @RequestParam("genero") String genero,
+            @RequestParam("estilo") String estilo,
+            @RequestParam("anoLancamento") int anoLancamento) {
+        Musica novaMusica = new Musica(nextId++, nome, artista, genero, estilo, anoLancamento, false);
+        listaMusicas.add(novaMusica);
+
+        return "redirect:/musicas";
     }
 }

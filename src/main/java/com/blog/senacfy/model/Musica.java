@@ -8,17 +8,19 @@ public class Musica {
     private String genero;
     private String estilo;
     private int anoLancamento;
+    private boolean aprovado;
 
     public Musica() {
     }
 
-    public Musica(int id, String nome, String artista, String genero, String estilo, int anoLancamento) {
+    public Musica(int id, String nome, String artista, String genero, String estilo, int anoLancamento, boolean aprovado) {
         this.id = id;
         this.nome = nome;
         this.artista = artista;
         this.genero = genero;
         this.estilo = estilo;
         this.anoLancamento = anoLancamento;
+        this.aprovado = aprovado;
     }
 
     public int getId() {
@@ -68,5 +70,15 @@ public class Musica {
     public void setAnoLancamento(int anoLancamento) {
         this.anoLancamento = anoLancamento;
     }
+
+    public boolean isAprovado() {
+        return aprovado;
+    }
+
+    public void setAprovado(boolean aprovado) {
+        this.aprovado = aprovado;
+    }
+
+    
 
 }
