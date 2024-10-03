@@ -20,7 +20,7 @@ public class SenacfyController {
         listaMusicas.add(new Musica(nextId++, "Song 1", "Artist 1", "Rock", "Indie", 2010, true));
         listaMusicas.add(new Musica(nextId++, "Song 2", "Artist 2", "Pop", "Dance", 2015, true));
         listaMusicas.add(new Musica(nextId++, "Song 3", "Artist 3", "Jazz", "Smooth", 2005, false));
-       
+
         listaAvaliacoes.add(new Avaliacao(1, 8, "Ótima música!", 1));
         listaAvaliacoes.add(new Avaliacao(2, 7, "Gostei bastante.", 2));
     }
@@ -70,7 +70,7 @@ public class SenacfyController {
 
     @GetMapping("/adicionar-musica")
     public String adicionarMusicaForm() {
-        return "adicionarMusica"; 
+        return "adicionarMusica";
     }
 
     @PostMapping("/adicionar-musica")
@@ -83,5 +83,26 @@ public class SenacfyController {
         listaMusicas.add(novaMusica);
 
         return "redirect:/musicas";
+    }
+
+    @GetMapping("/administracao")
+    public String administracao(Model model) {
+        model.addAttribute("musicas", listaMusicas);
+        return "administracao"; // retorna a nova página de administração
+    }
+
+    @PostMapping("/aprovar/{id}")
+    public String aprovarMusica(@PathVariable int id) {
+        Musica musica = listaMusicas.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
+        if (musica != null) {
+            musica.setAprovado(true); // aprova a música
+        }
+        return "redirect:/administracao"; // redireciona para a página de administração
+    }
+
+    @PostMapping("/excluir/{id}")
+    public String excluirMusica(@PathVariable int id) {
+        listaMusicas.removeIf(m -> m.getId() == id); // remove a música da lista
+        return "redirect:/administracao"; // redireciona para a página de administração
     }
 }
