@@ -1,8 +1,15 @@
 package com.blog.senacfy.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "musica") // Nome da tabela no banco de dados
 public class Musica {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Geração de ID autoincremento
     private int id;
+
     private String nome;
     private String artista;
     private String genero;
@@ -99,5 +106,4 @@ public class Musica {
         }
         return "https://www.youtube.com/embed/" + videoId;
     }
-
 }

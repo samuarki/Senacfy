@@ -1,20 +1,30 @@
 package com.blog.senacfy.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "avaliacoes") // Nome da tabela no banco de dados
 public class Avaliacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private int nota;
+
     private String descricao;
-    private int filmeId;
+
+    @Column(name = "musica_id") // Mapeando a coluna no banco de dados
+    private int musicaId;
 
     public Avaliacao() {
     }
 
-    public Avaliacao(int id, int nota, String descricao, int filmeId) {
+    public Avaliacao(int id, int nota, String descricao, int musicaId) {
         this.id = id;
         this.nota = nota;
         this.descricao = descricao;
-        this.filmeId = filmeId;
+        this.musicaId = musicaId;
     }
 
     public int getId() {
@@ -41,12 +51,11 @@ public class Avaliacao {
         this.descricao = descricao;
     }
 
-    public int getFilmeId() {
-        return filmeId;
+    public int getMusicaId() {
+        return musicaId;
     }
 
-    public void setFilmeId(int filmeId) {
-        this.filmeId = filmeId;
+    public void setMusicaId(int musicaId) {
+        this.musicaId = musicaId;
     }
-
 }
