@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
     <head>
         <meta charset="UTF-8">
         <title>Administração - Senacfy</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="admin.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     </head>
     <body>
 
@@ -18,40 +19,84 @@
             </div>
         </nav>
 
-
         <div class="container mt-5">
             <h1 class="text-center">Administração - Músicas</h1>
             <div class="scrollable-box mt-4">
                 <div class="row">
-                    <div class="col-12" th:each="musica : ${musicas}">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${musica.nome}"></h5>
-                                <h6 class="card-subtitle mb-2 text-muted" th:text="${musica.artista}"></h6>
-                                <p class="card-text"><strong>Gênero:</strong> <span th:text="${musica.genero}"></span></p>
-                                <p class="card-text"><strong>Estilo:</strong> <span th:text="${musica.estilo}"></span></p>
-                                <p class="card-text"><strong>Ano de Lançamento:</strong> <span th:text="${musica.anoLancamento}"></span></p>
-                                <p class="card-text"><strong>Aprovada:</strong> <span th:text="${musica.aprovado ? 'Sim' : 'Não'}"></span></p>
-
-                                <div th:if="${!musica.aprovado}">
-                                    <form th:action="@{'/aprovar/' + ${musica.id}}" method="post" style="display:inline;">
-                                        <button type="submit" class="btn btn-success">Aprovar</button>
-                                    </form>
-                                </div>
-
-                                <form th:action="@{'/excluir/' + ${musica.id}}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger">Excluir</button>
-                                </form>
-                            </div>
-                        </div>
+                    <div class="col-12" id="musicas-container">
+                        <!-- Cada música será inserida aqui via JavaScript -->
                     </div>
                 </div>
             </div>
         </div>
 
-
         <footer class="bg-dark text-white text-center py-3 mt-4">
             <p>© 2024 Senacfy. Todos os direitos reservados.</p>
         </footer>
+
+        <script>
+            // Carregar músicas ao carregar a página
+            $(document).ready(function () {
+                carregarMusicas();
+
+                // Função para carregar músicas
+                function carregarMusicas() {
+                    $.get("/api/musicas", function (musicas) {
+                        $('#musicas-container').empty(); // Limpa o conteúdo antes de carregar novas músicas
+                        musicas.forEach(function (musica) {
+                            $('#musicas-container').append(`
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${musica.nome}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">${musica.artista}</h6>
+                                        <p class="card-text"><strong>Gênero:</strong> ${musica.genero}</p>
+                                        <p class="card-text"><strong>Estilo:</strong> ${musica.estilo}</p>
+                                        <p class="card-text"><strong>Ano de Lançamento:</strong> ${musica.anoLancamento}</p>
+                                        <p class="card-text"><strong>Aprovada:</strong> ${musica.aprovado ? 'Sim' : 'Não'}</p>
+                                        <div id="botoes-${musica.id}">
+                                            ${musica.aprovado ? '' : `<button class="btn btn-success" onclick="aprovarMusica(${musica.id})">Aprovar</button>`}
+                                            <button class="btn btn-danger" onclick="excluirMusica(${musica.id})">Excluir</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        });
+                    });
+                }
+
+                // Função para aprovar uma música via API REST
+                window.aprovarMusica = function (id) {
+                    $.ajax({
+                        url: `/api/aprovar/${id}`, // Atualização: corrige a URL para a correta ação no backend
+                        type: 'POST', // Usando POST para a aprovação
+                        success: function () {
+                            alert("Música aprovada com sucesso!");
+                            carregarMusicas(); // Recarregar músicas após a aprovação
+                        },
+                        error: function () {
+                            alert("Erro ao aprovar música.");
+                        }
+                    });
+                };
+
+                // Função para excluir uma música via API REST
+                window.excluirMusica = function (id) {
+                    if (confirm("Tem certeza que deseja excluir essa música?")) {
+                        $.ajax({
+                            url: `/api/musica/${id}`,
+                            type: 'DELETE',
+                            success: function () {
+                                alert("Música excluída com sucesso!");
+                                carregarMusicas(); // Recarregar músicas após a exclusão
+                            },
+                            error: function () {
+                                alert("Erro ao excluir música.");
+                            }
+                        });
+                    }
+                };
+            });
+        </script>
+
     </body>
 </html>

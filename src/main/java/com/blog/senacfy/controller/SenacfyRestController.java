@@ -27,7 +27,14 @@ public class SenacfyRestController {
     }
 
     @GetMapping("/musica/{id}")
-    public ResponseEntity<Musica> obterMusica(@PathVariable int id) {
+    public ResponseEntity<Musica> obterMusica(@PathVariable Integer id) {
+        // Verifique se o ID não é nulo e é positivo
+        if (id == null || id <= 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // Retorna erro 400 se o ID for inválido
+        }
+
+        System.out.println("ID recebido: " + id); // Log para depuração
+
         return musicaRepository.findById(id)
                 .map(musica -> new ResponseEntity<>(musica, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -74,5 +81,16 @@ public class SenacfyRestController {
     @GetMapping("/avaliacao/{musicaId}")
     public List<Avaliacao> listarAvaliacoesPorMusica(@PathVariable int musicaId) {
         return avaliacaoRepository.findByMusicaId(musicaId);
+    }
+
+    @PostMapping("/aprovar/{id}")
+    public ResponseEntity<Void> aprovarMusica(@PathVariable int id) {
+        return musicaRepository.findById(id)
+                .map(musica -> {
+                    musica.setAprovado(true);
+                    musicaRepository.save(musica);
+                    return new ResponseEntity<Void>(HttpStatus.OK);  // Retorna 200 OK após a aprovação
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));  // Caso não encontre a música, retorna 404
     }
 }
